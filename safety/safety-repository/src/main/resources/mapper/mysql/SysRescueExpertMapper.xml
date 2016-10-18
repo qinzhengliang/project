@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zte.alm.safety.repository.mapper.SysRescueExpertMapper" >
+  <resultMap id="BaseResultMap" type="com.zte.alm.safety.repository.entity.SysRescueExpert" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="BIGINT" />
+    <result column="organization" property="organization" jdbcType="BIGINT" />
+    <result column="sex" property="sex" jdbcType="BIT" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="company" property="company" jdbcType="VARCHAR" />
+    <result column="creation_time" property="creationTime" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="enabled_flag" property="enabledFlag" jdbcType="BIT" />
+  </resultMap>
+  <select id="query" parameterType="Map" resultType="Map">
+    <![CDATA[
+    SELECT
+      s.id,
+      s.`name`,
+      s.`type`,
+      s.`organization`,
+      s.`sex`,
+      s.`phone`,
+      s.`company`,
+      s.`creation_time` AS creationTime,
+      s.`created_by` AS createdBy,
+      s.`last_updated_by` AS lastUpdatedBy,
+      s.`last_update_time` AS lastUpdateTime,
+      s.`enabled_flag` AS enabledFlag
+    FROM
+      sys_rescue_expert s
+    WHERE 1=1
+    ]]>
+    <if test="name!= null">
+      <![CDATA[ AND s.name = #{name} ]]>
+    </if>
+    <if test="type!= null">
+      <![CDATA[ AND s.type = #{type}]]>
+    </if>
+    <![CDATA[
+      AND s.enabled_flag = 1
+      ]]>
+  </select>
+  <select id="queryAll" resultType="Map">
+    <![CDATA[
+    SELECT
+      s.id,
+      s.`name`,
+      s.`type`,
+      s.`organization`,
+      s.`sex`,
+      s.`phone`,
+      s.`company`,
+      s.`creation_time` AS creationTime,
+      s.`created_by` AS createdBy,
+      s.`last_updated_by` AS lastUpdatedBy,
+      s.`last_update_time` AS lastUpdateTime,
+      s.`enabled_flag` AS enabledFlag
+    FROM
+      sys_rescue_expert s
+      WHERE
+      s.enabled_flag = 1
+       ]]>
+  </select>
+</mapper>

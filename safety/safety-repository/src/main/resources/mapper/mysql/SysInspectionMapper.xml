@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zte.alm.safety.repository.mapper.SysInspectionMapper" >
+  <resultMap id="BaseResultMap" type="com.zte.alm.safety.repository.entity.SysInspection" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="inspection_time" property="inspectionTime" jdbcType="TIMESTAMP" />
+    <result column="inspector" property="inspector" jdbcType="BIGINT" />
+    <result column="department" property="department" jdbcType="BIGINT" />
+    <result column="project" property="project" jdbcType="VARCHAR" />
+    <result column="enterprise" property="enterprise" jdbcType="BIGINT" />
+    <result column="safety_manager" property="safetyManager" jdbcType="BIGINT" />
+    <result column="safety_manager_contact" property="safetyManagerContact" jdbcType="VARCHAR" />
+    <result column="video" property="video" jdbcType="BIGINT" />
+    <result column="mark" property="mark" jdbcType="VARCHAR" />
+    <result column="creation_time" property="creationTime" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="enabled_flag" property="enabledFlag" jdbcType="BIT" />
+  </resultMap>
+  <select id="query" parameterType="Map" resultType="Map">
+    <![CDATA[
+    SELECT
+       t.id,
+      t.inspection_time AS inspectionTime,
+      t.inspector,
+      t.department,
+      t.project,
+      t.enterprise,
+      t.safety_manager AS safetyManager,
+      t.safety_manager_contact AS safetyManagerContact,
+      t.video,
+      t.mark,
+      t.creation_time AS creationTime,
+      t.created_by AS createdBy,
+      t.last_update_time AS lastUpdateTime,
+      t.last_updated_by AS lastUpdatedBy,
+      t.enabled_flag AS enabledFlag
+    FROM
+      sys_inspection t
+    WHERE t.enabled_flag = 1
+    ]]>
+    <if test="inspectionTime!= null">
+      <![CDATA[ AND t.inspectionTime = #{inspectionTime}]]>
+    </if>
+    <if test="inspector!= null">
+      <![CDATA[ AND t.inspector = #{inspector}]]>
+    </if>
+    <if test="department!= null">
+      <![CDATA[ AND t.department = #{department}]]>
+    </if>
+    <![CDATA[
+       order by t.creation_time desc]]>
+  </select>
+
+  <select id="queryAll"  resultType="Map">
+    <![CDATA[
+    SELECT
+      t.id,
+      t.inspection_time AS inspectionTime,
+      t.inspector,
+      t.department,
+      t.project,
+      t.enterprise,
+      t.safety_manager AS safetyManager,
+      t.safety_manager_contact AS safetyManagerContact,
+      t.video,
+      t.mark,
+      t.creation_time AS creationTime,
+      t.created_by AS createdBy,
+      t.last_update_time AS lastUpdateTime,
+      t.last_updated_by AS lastUpdatedBy,
+      t.enabled_flag AS enabledFlag
+    FROM
+      sys_inspection t
+    WHERE t.enabled_flag = 1
+       order by t.creation_time desc]]>
+  </select>
+</mapper>

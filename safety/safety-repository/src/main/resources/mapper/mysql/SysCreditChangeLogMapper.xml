@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zte.alm.safety.repository.mapper.SysCreditChangeLogMapper" >
+  <resultMap id="BaseResultMap" type="com.zte.alm.safety.repository.entity.SysCreditChangeLog" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="creadit_id" property="creaditId" jdbcType="BIGINT" />
+    <result column="change_time" property="changeTime" jdbcType="TIMESTAMP" />
+    <result column="changed_by" property="changedBy" jdbcType="BIGINT" />
+    <result column="change_reson" property="changeReson" jdbcType="VARCHAR" />
+    <result column="old_credit" property="oldCredit" jdbcType="INTEGER" />
+    <result column="new_credit" property="newCredit" jdbcType="INTEGER" />
+    <result column="creation_time" property="creationTime" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="enabled_flag" property="enabledFlag" jdbcType="BIT" />
+  </resultMap>
+  <select id="query" parameterType="Map" resultType="Map">
+    <![CDATA[
+    SELECT
+      p.id,
+      p.creadit_id AS creaditId,
+      p.change_time AS changeTime,
+      p.changed_by AS changedBy,
+      p.change_reson AS changeReson,
+      p.old_credit AS oldCredit,
+      p.new_credit AS newCredit,
+      p.creation_time AS creationTime,
+      p.created_by AS createdBy,
+      p.last_update_time AS lastUpdateTime,
+      p.last_updated_by AS lastUpdatedBy,
+      p.enabled_flag AS enabledFlag
+    FROM
+      sys_credit_change_log p
+    WHERE 1=1
+    ]]>
+    <if test="creaditId!= null">
+      <![CDATA[ AND p.creadit_id = #{creaditId} ]]>
+    </if>
+    <if test="changedBy!= null">
+      <![CDATA[ AND p.changed_by = #{changedBy}]]>
+    </if>
+    <![CDATA[
+      AND p.enabled_flag = 1
+      ]]>
+  </select>
+  <select id="queryAll" resultType="Map">
+    <![CDATA[
+    SELECT
+      p.id,
+      p.creadit_id AS creaditId,
+      p.change_time AS changeTime,
+      p.changed_by AS changedBy,
+      p.change_reson AS changeReson,
+      p.old_credit AS oldCredit,
+      p.new_credit AS newCredit,
+      p.creation_time AS creationTime,
+      p.created_by AS createdBy,
+      p.last_update_time AS lastUpdateTime,
+      p.last_updated_by AS lastUpdatedBy,
+      p.enabled_flag AS enabledFlag
+    FROM
+      sys_credit_change_log
+    WHERE p.enabled_flag = 1
+       ]]>
+  </select>
+</mapper>

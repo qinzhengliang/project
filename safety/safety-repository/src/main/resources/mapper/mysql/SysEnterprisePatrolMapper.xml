@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zte.alm.safety.repository.mapper.SysEnterprisePatrolMapper">
+  <resultMap id="BaseResultMap" type="com.zte.alm.safety.repository.entity.SysEnterprisePatrol">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="enterprise_id" property="enterpriseId" jdbcType="BIGINT" />
+    <result column="patrol_time" property="patrolTime" jdbcType="TIMESTAMP" />
+    <result column="patrol_location" property="patrolLocation" jdbcType="VARCHAR" />
+    <result column="patrol_point" property="patrolPoint" jdbcType="BIGINT" />
+    <result column="patrol_photo" property="patrolPhoto" jdbcType="VARCHAR" />
+    <result column="patrol_man" property="patrolMan" jdbcType="BIGINT" />
+    <result column="patrol_problem" property="patrolProblem" jdbcType="VARCHAR" />
+    <result column="problem_photo" property="problemPhoto" jdbcType="VARCHAR" />
+    <result column="problem_handling" property="problemHandling" jdbcType="VARCHAR" />
+    <result column="handling_photo" property="handlingPhoto" jdbcType="VARCHAR" />
+    <result column="handling_time" property="handlingTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="BIGINT" />
+    <result column="creation_time" property="creationTime" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="enabled_flag" property="enabledFlag" jdbcType="BIT" />
+  </resultMap>
+  <select id="query" parameterType="Map" resultType="Map">
+      <![CDATA[
+    SELECT
+      t.id,
+      t.enterprise_id AS enterpriseId,
+      t.patrol_time AS patrolTime,
+      t.patrol_location AS patrolLocation,
+      t.patrol_point AS patrolPoint,
+      t.patrol_photo AS patrolPhoto,
+      t.patrol_man AS patrolMan,
+      t.patrol_problem AS patrolProblem,
+      t.problem_photo AS problemPhoto,
+      t.problem_handling AS problemHandling,
+      t.handling_photo AS handlingPhoto,
+      t.handling_time AS handlingTime,
+      t.status,
+      t.creation_time AS creationTime,
+      t.created_by AS createdBy,
+      t.last_update_time AS lastUpdateTime,
+      t.last_updated_by AS lastUpdatedBy,
+      t.enabled_flag AS enabledFlag,
+      p.name AS enterpriseName,
+      p.category AS category,
+      p.dangerous_level AS dangerousLevel,
+      u.name
+    FROM
+      sys_enterprise_patrol t,
+      sys_enterprise p,
+      sys_user u
+    WHERE t.enabled_flag = 1
+    ]]>
+    <if test="organization!= null">
+      <![CDATA[ AND p.organization = #{organization} ]]>
+    </if>
+    <if test="category!= null">
+      <![CDATA[ AND p.category = #{category} ]]>
+    </if>
+    <if test="problemHandling!= null">
+      <![CDATA[ AND t.problem_handling = #{problemHandling} ]]>
+    </if>
+    <![CDATA[
+        AND t.enterprise_id = p.id
+      AND p.enabled_flag = 1
+      AND t.created_by = u.id
+      AND u.enabled_flag = 1
+       order by t.creation_time desc]]>
+  </select>
+
+  <select id="queryAll"  resultType="Map">
+    <![CDATA[
+    SELECT
+      t.id,
+      t.enterprise_id AS enterpriseId,
+      t.patrol_time AS patrolTime,
+      t.patrol_location AS patrolLocation,
+      t.patrol_point AS patrolPoint,
+      t.patrol_photo AS patrolPhoto,
+      t.patrol_man AS patrolMan,
+      t.patrol_problem AS patrolProblem,
+      t.problem_photo AS problemPhoto,
+      t.problem_handling AS problemHandling,
+      t.handling_photo AS handlingPhoto,
+      t.handling_time AS handlingTime,
+      t.status,
+      t.creation_time AS creationTime,
+      t.created_by AS createdBy,
+      t.last_update_time AS lastUpdateTime,
+      t.last_updated_by AS lastUpdatedBy,
+      t.enabled_flag AS enabledFlag
+    FROM
+      sys_enterprise_patrol t
+    WHERE t.enabled_flag = 1
+       order by t.creation_time desc]]>
+  </select>
+</mapper>

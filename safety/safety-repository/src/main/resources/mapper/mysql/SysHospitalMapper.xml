@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zte.alm.safety.repository.mapper.SysHospitalMapper" >
+  <resultMap id="BaseResultMap" type="com.zte.alm.safety.repository.entity.SysHospital" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="organization" property="organization" jdbcType="BIGINT" />
+    <result column="grade" property="grade" jdbcType="BIGINT" />
+    <result column="manager" property="manager" jdbcType="VARCHAR" />
+    <result column="manager_contact" property="managerContact" jdbcType="VARCHAR" />
+    <result column="rescue_manager" property="rescueManager" jdbcType="VARCHAR" />
+    <result column="rescue_manager_contact" property="rescueManagerContact" jdbcType="VARCHAR" />
+    <result column="longitude" property="longitude" jdbcType="VARCHAR" />
+    <result column="latitude" property="latitude" jdbcType="VARCHAR" />
+    <result column="creation_time" property="creationTime" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="enabled_flag" property="enabledFlag" jdbcType="BIT" />
+  </resultMap>
+  <select id="query" parameterType="Map" resultType="Map">
+    <![CDATA[
+    SELECT
+      t.id,
+      t.name,
+      t.address,
+      t.organization,
+      t.grade,
+      t.manager,
+      t.manager_contact AS managerContact,
+      t.rescue_manager AS rescueManager,
+      t.rescue_manager_contact AS rescueManagerContact,
+      t.longitude,
+      t.latitude,
+      t.creation_time AS creationTime,
+      t.created_by AS createdBy,
+      t.last_update_time AS lastUpdateTime,
+      t.last_updated_by AS lastUpdatedBy,
+      t.enabled_flag AS enabledFlag
+    FROM
+      sys_hospital t
+    WHERE t.enabled_flag =1
+    ]]>
+    <if test="organization!= null">
+      <![CDATA[ AND t.organization = #{organization}]]>
+    </if>
+  </select>
+  <select id="queryAll" resultType="Map">
+    <![CDATA[
+    SELECT
+      t.id,
+      t.name,
+      t.address,
+      t.organization,
+      t.grade,
+      t.manager,
+      t.manager_contact AS managerContact,
+      t.rescue_manager AS rescueManager,
+      t.rescue_manager_contact AS rescueManagerContact,
+      t.longitude,
+      t.latitude,
+      t.creation_time AS creationTime,
+      t.created_by AS createdBy,
+      t.last_update_time AS lastUpdateTime,
+      t.last_updated_by AS lastUpdatedBy,
+      t.enabled_flag AS enabledFlag
+    FROM
+      sys_hospital t
+    WHERE t.enabled_flag =1
+       ]]>
+  </select>
+</mapper>

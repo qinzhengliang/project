@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zte.alm.safety.repository.mapper.SysUserMapper">
+  <resultMap id="BaseResultMap" type="com.zte.alm.safety.repository.entity.SysUser">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <id column="name" property="name" jdbcType="VARCHAR" />
+    <result column="display_name" property="displayName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="BIGINT" />
+    <result column="organization" property="organization" jdbcType="BIGINT" />
+    <result column="enterprise" property="enterprise" jdbcType="BIGINT" />
+    <result column="creation_time" property="creationTime" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="enabled_flag" property="enabledFlag" jdbcType="BIT" />
+  </resultMap>
+  <select id="selectUserByNameAndPassword" resultMap="BaseResultMap">
+    SELECT
+    s.id,
+    s.name,
+    s.display_name AS displayName,
+    s.password,
+    s.email,
+    s.phone,
+    s.status,
+    s.type,
+    s.organization,
+    s.enterprise,
+    s.creation_time AS creationTime,
+    s.created_by AS creationBy,
+    s.last_update_time AS lastUpdateTime,
+    s.last_updated_by AS lastUpdateTime,
+    s.enabled_flag AS enabledFlag
+    FROM sys_user s
+    WHERE s.name = #{name,jdbcType=VARCHAR}
+    AND s.password=#{password,jdbcType=VARCHAR}
+    AND s.enabled_flag=1
+  </select>
+
+  <select id="query" parameterType="Map" resultType="Map">
+    <![CDATA[
+    SELECT
+      s.id,
+      s.name,
+      s.display_name AS displayName,
+      s.password,
+      s.email,
+      s.phone,
+      s.status,
+      s.type,
+      s.organization,
+      s.enterprise,
+      s.creation_time AS creationTime,
+      s.created_by AS creationBy,
+      s.last_update_time AS lastUpdateTime,
+      s.last_updated_by AS lastUpdateTime,
+      s.enabled_flag AS enabledFlag
+    FROM
+      sys_user s
+    WHERE s.ENABLED_FLAG = 1
+    ]]>
+    <if test="id!= null">
+      <![CDATA[ AND s.id = #{id} ]]>
+    </if>
+    <if test="name!= null">
+      <![CDATA[ AND s.name = #{name} ]]>
+    </if>
+    <if test="status!= null">
+      <![CDATA[ AND s.status = #{status} ]]>
+    </if>
+    <if test="type!= null">
+      <![CDATA[ AND s.type = #{type} ]]>
+    </if>
+    <if test="organization!= null">
+      <![CDATA[ AND s.organization = #{organization} ]]>
+    </if>
+    <if test="enterprise!= null">
+      <![CDATA[ AND s.enterprise = #{enterprise} ]]>
+    </if>
+    <![CDATA[
+       order by s.creation_time desc]]>
+  </select>
+  <select id="queryAll"  resultType="Map">
+    <![CDATA[
+       SELECT
+        s.id,
+        s.name,
+        s.display_name AS displayName,
+        s.password,
+        s.email,
+        s.phone,
+        s.status,
+        s.type,
+        s.organization,
+        s.enterprise,
+        s.creation_time AS creationTime,
+        s.created_by AS creationBy,
+        s.last_update_time AS lastUpdateTime,
+        s.last_updated_by AS lastUpdateTime,
+        s.enabled_flag AS enabledFlag
+        FROM sys_user s
+        ]]>
+          </select>
+</mapper>

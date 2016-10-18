@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zte.alm.safety.repository.mapper.SysProductionSafetyCreditMapper" >
+  <resultMap id="BaseResultMap" type="com.zte.alm.safety.repository.entity.SysProductionSafetyCredit" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="BIT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="enterprise_id" property="enterpriseId" jdbcType="BIGINT" />
+    <result column="credit_score" property="creditScore" jdbcType="INTEGER" />
+    <result column="touch_round" property="touchRound" jdbcType="BIT" />
+    <result column="one_vote" property="oneVote" jdbcType="BIT" />
+    <result column="creation_time" property="creationTime" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="enabled_flag" property="enabledFlag" jdbcType="BIT" />
+  </resultMap>
+  <select id="query" parameterType="Map" resultType="Map">
+    <![CDATA[
+    SELECT
+      s.`id`,
+      s.`type`,
+      s.`user_id` AS userId,
+      s.`enterprise_id` AS enterpriseId,
+      s.`credit_score` AS creditScore,
+      s.`touch_round` AS touchRound,
+      s.`one_vote` AS oneVote,
+      s.`creation_time` AS creationTime,
+      s.`created_by` AS createdBy,
+      s.`last_updated_by` AS lastUpdatedBy,
+      s.`last_update_time` AS lastUpdateTime,
+      s.`enabled_flag` AS enabledFlag
+    FROM
+      sys_production_safety_credit s
+    WHERE 1=1
+    ]]>
+    <if test="type!= null">
+      <![CDATA[ AND s.type = #{type} ]]>
+    </if>
+    <if test="createdBy!= null">
+      <![CDATA[ AND s.created_by = #{createdBy}]]>
+    </if>
+    <![CDATA[
+      AND s.enabled_flag = 1
+      ]]>
+  </select>
+  <select id="queryAll" resultType="Map">
+    <![CDATA[
+    SELECT
+      s.`id`,
+      s.`type`,
+      s.`user_id` AS userId,
+      s.`enterprise_id` AS enterpriseId,
+      s.`credit_score` AS creditScore,
+      s.`touch_round` AS touchRound,
+      s.`one_vote` AS oneVote,
+      s.`creation_time` AS creationTime,
+      s.`created_by` AS createdBy,
+      s.`last_updated_by` AS lastUpdatedBy,
+      s.`last_update_time` AS lastUpdateTime,
+      s.`enabled_flag` AS enabledFlag
+    FROM
+      sys_production_safety_credit s
+    WHERE
+      s.enabled_flag = 1
+       ]]>
+  </select>
+</mapper>

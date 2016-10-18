@@ -1,0 +1,45 @@
+﻿html { background: rgb(255, 255, 255) none repeat scroll 0% 0%; }
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, th, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video { margin: 0px; padding: 0px; border: 0px none; outline: 0px none; font-size: 100%; vertical-align: baseline; }
+body, button, input, select, textarea { font: 12px/1.5 "宋体"; }
+body{min-width:1000px;}
+a{text-decoration:none;}
+input, select, textarea { font-size: 100%; vertical-align: middle; }
+table { border-collapse: collapse; border-spacing: 0px; margin: 0px auto; }
+input, button, textarea, fieldset, img { border: 0px none; }
+img { vertical-align: bottom; }
+button { cursor: pointer; }
+iframe { display: block; }
+ol, ul { list-style: outside none none; }
+h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: 400; }
+q::before, q::after { content: ""; }
+.clearfix::after { visibility: hidden; display: block; font-size: 0px; content: ""; clear: both; height: 0px; }
+.fl, .fr { display: inline; }
+.fl { float: left; }
+.fr { float: right; }
+.fc { clear: both; }
+input { outline: medium none; }
+.icon{cursor: pointer;background-image: url(../img/icon.png);width:40px ;height:40px ;background-repeat: no-repeat;display:inline-block;*display:block;*zoom:1;vertical-align: middle;}
+.icon.icon-ld{background-position: -101px -379px;width: 59px;height: 59px;}
+.icon.icon-xinx{background-position: -57px -391px;width: 59px;height: 59px;}
+.login-box{color:#fff;background:url(../img/login-bg.png) top center no-repeat; background-size:100%;width:100%;min-width:1200px;margin:0 auto;min-height:650px;}
+.w1200{width:1200px;position:relative;margin:0 auto;}
+.login-box .login-logo{position:absolute;top:200px;left:350px;}
+.login-form{color:#000;position:absolute;top:368px;left:200px;width:800px;height:100px;}
+.login-form .login-text{font-size:18px;background-color:#FFF;height:48px;line-height:48px;border:none;width:250px;padding-left:80px;}
+.mima.login-text{background:url(../img/mima.png)  25px 12px no-repeat;background-color:#FFF;}
+.zhangh.login-text{background:url(../img/zhangh.png)  25px 12px no-repeat;background-color:#FFF;}
+.login-form .btn{cursor:pointer;height:48px;line-height:48px;border:none;width:106px;text-align:center;background-color:#4EAAB7;color:#fff;font-size:18px;border-radius:5px;display:inline-block;vertical-align: middle;}
+.login-box a{color:#fff;}
+.login-form .rem{margin-top:12px;color:#fff;}
+/* 企业信息*/
+.index-head{width:100%;min-width:1200px;background:url(../img/index-head-bg.png)  center top no-repeat;background-color:#3E5775;height:59px;}
+.index-head .logo{float:left;width:355px;height:38px;margin:10px 71px  ;}
+.index-head .xial{float:right;width:32px;height:100%;background:url(../img/icon.png) -260px -406px no-repeat;cursor:pointer;margin-right:10px;}
+.index-head .my{float:right;width:192px;height:100%;background-color:#446286;}
+.index-head .radius-50{border-radius:50%;width:40px;height:40px;margin-top:10px;margin-left:32px;float:left;}
+.index-head .mes{width:80px;height:40px;margin-top:10px;margin-left:10px;float:left;text-align:center;color:#fff;font-size:15px;}
+.index-head .mes .idname{font-size:12px;}
+.index-head .ld{position:relative;width:59px;height:100%;float:right;}
+.index-head .red-c{position:absolute;top:7px;left:30px;background:url(../img/red-c.png)  center center no-repeat;display:block;width:17px;height:17px;line-height:17px;text-align:center;color:#fff;font-size:12px;}
+.index-head .xinx.ld{background-color:#446286;}
+.index-head .head-text{background-color:#FFF;border-radius:19px;padding:0 20px;width:233px;font-size:14px;height:38px;line-height:38px;margin-top:10px;float:right;margin-right:24px;border:none;}

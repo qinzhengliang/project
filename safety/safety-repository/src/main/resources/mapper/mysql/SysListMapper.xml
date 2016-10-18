@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zte.alm.safety.repository.mapper.SysListMapper" >
+  <resultMap id="BaseResultMap" type="com.zte.alm.safety.repository.entity.SysList" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="creation_time" property="creationTime" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="enabled_flag" property="enabledFlag" jdbcType="BIT" />
+  </resultMap>
+  <select id="query" parameterType="Map" resultType="Map">
+    <![CDATA[
+    SELECT
+      t.id,
+      t.name,
+      t.description,
+      t.creation_time AS creationTime,
+      t.created_by AS createdBy,
+      t.last_update_time AS lastUpdateTime,
+      t.last_updated_by AS lastUpdatedBy,
+      t.enabled_flag AS enabledFlag
+    FROM
+      sys_list t
+    WHERE t.enabled_flag = 1
+    ]]>
+    <if test="id!= null">
+      <![CDATA[ AND t.id = #{id} ]]>
+    </if>
+    <![CDATA[
+       order by t.creation_time desc]]>
+  </select>
+
+  <select id="queryAll"  resultType="Map">
+    <![CDATA[
+    SELECT
+      t.id,
+      t.name,
+      t.description,
+      t.creation_time AS creationTime,
+      t.created_by AS createdBy,
+      t.last_update_time AS lastUpdateTime,
+      t.last_updated_by AS lastUpdatedBy,
+      t.enabled_flag AS enabledFlag
+    FROM
+      sys_list t
+    WHERE t.enabled_flag = 1
+    order by t.creation_time desc]]>
+  </select>
+</mapper>

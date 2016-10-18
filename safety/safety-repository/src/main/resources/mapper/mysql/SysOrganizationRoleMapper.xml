@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zte.alm.safety.repository.mapper.SysOrganizationRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.zte.alm.safety.repository.entity.SysOrganizationRole" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="organization_id" property="organizationId" jdbcType="BIGINT" />
+    <result column="role_id" property="roleId" jdbcType="BIGINT" />
+    <result column="priority" property="priority" jdbcType="INTEGER" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="creation_time" property="creationTime" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="enabled_flag" property="enabledFlag" jdbcType="BIT" />
+  </resultMap>
+  <select id="query" parameterType="Map" resultType="Map">
+    <![CDATA[
+    SELECT
+      s.`id`,
+      s.`organization_id` AS organizationId,
+      s.`role_id` AS roleId,
+      s.`priority`,
+      s.`description`,
+      s.`creation_time` AS creationTime,
+      s.`created_by` AS createdBy,
+      s.`last_update_time` AS lastUpdateTime,
+      s.`last_updated_by` AS lastUpdatedBy,
+      s.`enabled_flag` AS enabledFlag
+    FROM
+      sys_organization_role s
+    WHERE s.enabled_flag = 1
+    ]]>
+    <if test="id!= null">
+      <![CDATA[ AND s.id = #{id} ]]>
+    </if>
+    <if test="roleId!= null">
+      <![CDATA[ AND s.role_id = #{roleId}]]>
+    </if>
+    <![CDATA[
+       order by s.creation_time desc]]>
+  </select>
+
+  <select id="queryAll"  resultType="Map">
+    <![CDATA[
+    SELECT
+      s.`id`,
+      s.`organization_id` AS organizationId,
+      s.`role_id` AS roleId,
+      s.`priority`,
+      s.`description`,
+      s.`creation_time` AS creationTime,
+      s.`created_by` AS createdBy,
+      s.`last_update_time` AS lastUpdateTime,
+      s.`last_updated_by` AS lastUpdatedBy,
+      s.`enabled_flag` AS enabledFlag
+    FROM
+      sys_organization_role s
+    WHERE s.enabled_flag = 1
+    order by s.creation_time desc]]>
+  </select>
+</mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <aop:aspectj-autoproxy proxy-target-class="false" />
+
+    <!-- 切面Bean配置，也可以通过注解的方式加载到容器中，由于切面不是很多，推荐定义在此 -->
+    <bean id="restExceptionAspect"
+          class="com.zte.alm.safety.infrastructure.exceptionHandling.RestExceptionAspect" />
+    <bean id="loggingAspect"
+          class="com.zte.alm.safety.infrastructure.logging.LoggingAspect" />
+
+    <!-- 由于有些切面会要求临时增加，所以建议使用配置文件方式配置AOP，而不是注解的方式 -->
+    <aop:config>
+        <!-- 异常处理放在接口最顶层，确保返回给调用方的异常被处理 -->
+        <aop:aspect ref="restExceptionAspect">
+            <aop:around method="exceptionAroundAdvice"
+                    pointcut="execution(* com.zte.alm.safety.rest.restcontroller.*.*(..))"/>
+        </aop:aspect>
+        <!-- 方法调用日志，记录每个方法开始调用和结束调用的日志 -->
+        <aop:aspect ref="loggingAspect">
+            <aop:around method="LoggingAroundAdvice"
+                    pointcut="execution(* com.zte.alm.safety.rest.restcontroller.*.*(..))"/>
+            <aop:around method="LoggingAroundAdvice"
+                        pointcut="execution(* com.zte.alm.safety.service.*.*(..))"/>
+            <aop:around method="LoggingAroundAdvice"
+                        pointcut="execution(* com.zte.alm.safety.repository.mapper.*.*(..))"/>
+        </aop:aspect>
+    </aop:config>
+
+</beans>
